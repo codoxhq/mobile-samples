@@ -6,6 +6,6 @@ An API key is required to run these demo. Get one [here](https://app.codox.io)
 
 ## Quill
 
-- [Swift](https://github.com/codoxhq/mobile-samples/tree/master/react-quill-codox)
-- [Flutter](<(https://github.com/codoxhq/mobile-samples/tree/master/react-quill-codox)>)
-- [Kotlin](https://github.com/codoxhq/mobile-samples/tree/master/react-quill-codox)
+- [Swift](https://github.com/codoxhq/mobile-samples/tree/master/swift-quill-codox)
+- [Flutter](https://github.com/codoxhq/mobile-samples/tree/master/flutter-quill-codox)
+- [Kotlin](https://github.com/codoxhq/mobile-samples/tree/master/kotlin-quill-codox)
