@@ -1,4 +1,4 @@
-# Samples
+# Samples for Mobile Integrations
 
 This repository contains a collection of working examples on how to use different editors with codox API in your mobile applications.
 
