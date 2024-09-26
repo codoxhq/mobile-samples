@@ -56,6 +56,4 @@ QuillJS+Codox integration is implemented with kotlin WebView:
 
 ## Configuration note:
 
-To enable Codox sync, the local html, loaded by swift, must have custom baseURL, which is equivalent to Codox "domain" in subscription.<br/>
-In this demo, for demostration purposes, the demo subscription is used, with configured domain, which is setup here in code (see MainActivity.kt)<br/>
-In real app, must configure own domain in codox subscription and put same baseURL in the app.
+To enable Codox sync, the local html, loaded by swift, must have custom baseURL, which is equivalent to Codox "domain" in subscription.
