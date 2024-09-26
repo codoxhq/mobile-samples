@@ -94,32 +94,35 @@ export default function App() {
 
   /**
    * Global scope functions attached to window, available for flutter code to invoke.
+   * Attach to window when component is mounted into DOM
    */
-  /**
-   * This method can be extended to pass other params for codox, like docId, username, apiKey
-   */
-  window.initLexicalEditor = function (initState) {
-    try {
-      /**
-       * Invoke codox provided helper to validate state before launching editor
-       */
-      validateStateStructure(initState, LEXICAL_NODES_TO_REGISTER); // if invalid - will throw
+  useEffect(() => {
+    /**
+     * This method can be extended to pass other params for codox, like docId, username, apiKey
+     */
+    window.initLexicalEditor = function (initState) {
+      try {
+        /**
+         * Invoke codox provided helper to validate state before launching editor
+         */
+        validateStateStructure(initState, LEXICAL_NODES_TO_REGISTER); // if invalid - will throw
 
-      setInitLexicalState(initState);
-    } catch (err) {
-      console.error('[setInitLexicalState] error: ', err);
-    }
-  };
+        setInitLexicalState(initState);
+      } catch (err) {
+        console.error('[setInitLexicalState] error: ', err);
+      }
+    };
 
-  /**
-   * Extra api for enable/disable rendering of remote users cursors
-   */
-  window.showRemoteCursors = function () {
-    codoxAPI && codoxAPI.current.cursor.show();
-  };
-  window.hideRemoteCursors = function () {
-    codoxAPI && codoxAPI.current.cursor.hide();
-  };
+    /**
+     * Extra api for enable/disable rendering of remote users cursors
+     */
+    window.showRemoteCursors = function () {
+      codoxAPI && codoxAPI.current.cursor.show();
+    };
+    window.hideRemoteCursors = function () {
+      codoxAPI && codoxAPI.current.cursor.hide();
+    };
+  }, []);
 
   // will be invoked by Codox hook
   const fetchDocOnNetworkReconnect = async () => {
@@ -143,7 +146,7 @@ export default function App() {
      */
     try {
       const json = JSON.stringify(content);
-      window.flutter_inappwebview.callHandler('contentUpdatedHookHandler', json);
+      window.flutter_inappwebview.callHandler('contentChangedHookHandler', json);
     } catch (err) {
       console.error('[CODOX][contentChanged] flutter call error: ', err);
     }
@@ -177,7 +180,8 @@ export default function App() {
   // will be invoked by Codox - error events listener
   const onCodoxError = function (data) {
     try {
-      window.flutter_inappwebview.callHandler('onCodoxError');
+      const json = JSON.stringify(data);
+      window.flutter_inappwebview.callHandler('codoxErrorEventListener', json);
     } catch (err) {
       console.error('[CODOX][onCodoxError] flutter call error: ', err);
     }
