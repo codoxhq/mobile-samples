@@ -106,16 +106,13 @@
         // subscribe to codox error events
         codox.on('error', onCodoxError);
 
-        // demo username - random number generation
-        let username = `user_${Math.round(Math.random() * 1000)}`;
         // create codox config
         const codoxConfig = {
           app: 'quilljs',
           editor: quill,
-          docId: 'swift_quill_docId_1', //this is the unique id used to distinguish different documents
-          username, //unique user name
-          apiKey: '8b1e21f3-6534-4877-9090-dbb9e61993eb', // this apiKey is for demo only, should use own codox apiKey
-          demo: true, // this flag is ONLY for this demo apiKey, skip it when use own apiKey
+          docId: '[document id]', //this is the unique id used to distinguish different documents
+          username: '[unique username]', //unique user name
+          apiKey: '[codox apiKey]', // apiKey provided by codox
           hooks: {
             fetchDocOnNetworkReconnect: fetchDocOnNetworkReconnectHook,
             usersUpdate: usersUpdateHook,
