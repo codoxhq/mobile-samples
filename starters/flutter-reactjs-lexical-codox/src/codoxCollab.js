@@ -8,4 +8,4 @@ export {
   CodoxFontColorPlugin,
   validateStateStructure,
   INSERT_COMMENT,
-} from '../../../../lexical-provider/src/index.js';
+} from '@codoxhq/lexical-provider';
