@@ -255,7 +255,6 @@ export default function App() {
 
   useEffect(() => {
     if (initLexicalState && !codoxStarted) {
-      console.log('CODOX SESSION START - disabled');
       /**
        * Codox starts session when initial state and docId are in place
        */

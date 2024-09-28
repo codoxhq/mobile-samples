@@ -75,6 +75,7 @@ class ViewController: UIViewController {
             """
             
             webView.evaluateJavaScript(jsCode)
+         }
     }
     
     func setupPipeJSLogs() {
@@ -94,7 +95,7 @@ class ViewController: UIViewController {
             // decorate native js error logs
             var nativeConsoleError = console.error
             console.error = function(msg) {
-                window.webkit.messageHandlers.jsLogsPipeHander.postMessage(JSON.stringify(args))
+                window.webkit.messageHandlers.jsLogsPipeHandler.postMessage(JSON.stringify(args))
                 nativeConsoleError.apply(console, arguments)
             }
         })()
@@ -152,7 +153,7 @@ class ViewController: UIViewController {
         }  
     }
     
-    func initLexicalEditor(initEditorState) {
+    func initLexicalEditor(initEditorState: String) {
         let jsCode = "window.initLexicalEditor(\(initEditorState));"
         webView.evaluateJavaScript(jsCode) { (result, error) in
             if let error = error {
