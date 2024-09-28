@@ -10,7 +10,7 @@ class ViewController: UIViewController {
     /*
      in real app, should fetch init content from backend
      */
-    var initEditorState:String = '{"root":{"children":[{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1},"commentThreads":[]}'
+    var initEditorState:String = "{\"root\":{\"children\":[{\"children\":[],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1},\"commentThreads\":[]}"
    
 
     
@@ -199,7 +199,7 @@ extension ViewController : WKNavigationDelegate, WKScriptMessageHandler {
                Here for demo, mocking fetched state:
              */
             do {
-                let json: String = '{"content":{"root":{"children":[{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1},"commentThreads":[]},"timestamp":-1}'
+                let json: String = "{\"content\":{\"root\":{\"children\":[{\"children\":[],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1},\"commentThreads\":[]},\"timestamp\":-1}"
                 let jsCode = "window.fetchDocOnReconnectHookResponse(\(json));"
                 webView.evaluateJavaScript(jsCode)
                 
