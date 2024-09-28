@@ -62,4 +62,4 @@ In real app, must configure own domain in codox subscription and put same baseUR
 
 ## App Source:
 
-Original swift app project borrowed from https://github.com/suyeshkandpal28/swiftRichTextEditor
+Original swift app project borrowed from https://github.com/suyeshkandpal28/swiftRichLexicalEditor
