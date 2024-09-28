@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D8CEB032C9AE90F0060E7F9 /* codoxLib in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CEB022C9AE90F0060E7F9 /* codoxLib */; };
-		2D8CEB052C9AEA760060E7F9 /* QuillJSEditor in Resources */ = {isa = PBXBuildFile; fileRef = 2D8CEB042C9AEA760060E7F9 /* QuillJSEditor */; };
 		BEB6DBF92AB1CC8D00D7F315 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6DBF82AB1CC8D00D7F315 /* AppDelegate.swift */; };
 		BEB6DBFB2AB1CC8D00D7F315 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6DBFA2AB1CC8D00D7F315 /* SceneDelegate.swift */; };
 		BEB6DBFD2AB1CC8D00D7F315 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6DBFC2AB1CC8D00D7F315 /* ViewController.swift */; };
@@ -35,8 +33,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D8CEB022C9AE90F0060E7F9 /* codoxLib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = codoxLib; sourceTree = "<group>"; };
-		2D8CEB042C9AEA760060E7F9 /* QuillJSEditor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = QuillJSEditor; sourceTree = "<group>"; };
 		BEB6DBF52AB1CC8D00D7F315 /* RichTextEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB6DBF82AB1CC8D00D7F315 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEB6DBFA2AB1CC8D00D7F315 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,8 +91,6 @@
 		BEB6DBF72AB1CC8D00D7F315 /* RichTextEditor */ = {
 			isa = PBXGroup;
 			children = (
-				2D8CEB042C9AEA760060E7F9 /* QuillJSEditor */,
-				2D8CEB022C9AE90F0060E7F9 /* codoxLib */,
 				BEB6DBF82AB1CC8D00D7F315 /* AppDelegate.swift */,
 				BEB6DBFA2AB1CC8D00D7F315 /* SceneDelegate.swift */,
 				BEB6DBFC2AB1CC8D00D7F315 /* ViewController.swift */,
@@ -212,9 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D8CEB032C9AE90F0060E7F9 /* codoxLib in Resources */,
 				BEB6DC052AB1CC8E00D7F315 /* LaunchScreen.storyboard in Resources */,
-				2D8CEB052C9AEA760060E7F9 /* QuillJSEditor in Resources */,
 				BEB6DC022AB1CC8E00D7F315 /* Assets.xcassets in Resources */,
 				BEB6DC002AB1CC8D00D7F315 /* Main.storyboard in Resources */,
 			);
