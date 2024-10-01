@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         */
 
         // inject js/css scripts to html
-        injectJsCss()
+        //injectJsCss()
         
         // pause to ensure all js/css is injected
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
