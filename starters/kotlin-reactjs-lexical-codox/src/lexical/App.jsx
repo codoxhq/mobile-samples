@@ -93,7 +93,7 @@ export default function App() {
   const codoxAPI = useRef();
 
   /**
-   * Global scope functions attached to window, available for swift code to invoke.
+   * Global scope functions attached to window, available for kotlin code to invoke.
    * Attach to window when component is mounted into DOM
    */
   useEffect(() => {
@@ -127,70 +127,71 @@ export default function App() {
   // will be invoked by Codox hook
   const fetchDocOnNetworkReconnect = async () => {
     /**
-     * Invoke swift to get fetched content
+     * Invoke kotlin to get fetched content
      * Expected reponse semantics: {content: [lex jsoned state], timestamp: [Number]}
      */
-    try {
-      console.log('[CODOX][fetchDocOnNetworkReconnect] hook invoked');
-      return await new Promise((resolve, reject) => {
+    console.log('[CODOX][fetchDocOnNetworkReconnect] hook invoked');
+    return await new Promise((resolve, reject) => {
+      try {
         /**
-         * Set up a temp response handler for response from swift
-         * This callback will be invoked by swift with fetched state
-         * Wiat here until callback is invoked
-         *
-         * Reason to have this: postMessage() interface does not wiat for response.
-         *  on swift side, when it is ready to return data, the temp callback will be invoked.
-         *  Here, all this si wrapped in promise to keep it within single async call
+         * Set up a temp response handler for response from kotlin
+         * This callback will be invoked by kotlin with fetched state
+         * Wait here until callback is invoked
+         * Reason to have this: AndroidApp interface does not wiat for response.
+         *  on kotlin side, when it is ready to return data, the temp callback will be invoked.
+         *  Here, all this is wrapped in promise to keep it within single async call
          * */
         window.fetchDocOnReconnectHookResponse = (data) => {
-          const { content, timestamp } = JSON.parse(data);
+          console.log('[CODOX][fetchDocOnNetworkReconnect] response received: ', JSON.stringify(data));
+
+          const { content, timestamp } = data;
           resolve({ content, timestamp });
           delete window.fetchDocOnReconnectHookResponse;
         };
 
-        // trigger swift to fetch state
-        window.webkit.messageHandlers.fetchDocOnNetworkReconnect.postMessage();
-      });
-    } catch (err) {
-      console.error('[CODOX][fetchDocOnNetworkReconnect] swift call error: ', err);
-    }
+        // trigger kotlin to fetch state
+        AndroidApp.fetchDocOnNetworkReconnect();
+      } catch (err) {
+        console.log('[CODOX][fetchDocOnNetworkReconnect] error: ', err);
+      }
+    });
   };
 
   // will be invoked by Codox hook
   const contentChanged = (content) => {
     /**
-     * Invoke swift and send data when content is changed
+     * Invoke kotlin and send data when content is changed
      */
     try {
       const json = JSON.stringify(content);
-      window.webkit.messageHandlers.contentChanged.postMessage(json);
+      AndroidApp.contentChanged(json);
     } catch (err) {
-      console.error('[CODOX][contentChanged] swift call error: ', err);
+      console.error('[CODOX][contentChanged] kotlin call error: ', err);
     }
   };
 
   // will be invoked by Codox hook
   const usersUpdate = (users) => {
     /**
-     * Invoke swift and send data, when remote users change
+     * Invoke kotlin and send data, when remote users change
      */
     try {
       const json = JSON.stringify(users);
-      window.webkit.messageHandlers.usersUpdate.postMessage(json);
+      AndroidApp.usersUpdate(json);
     } catch (err) {
-      console.error('[CODOX][usersUpdate] swift call error: ', err);
+      console.error('[CODOX][usersUpdate] kotlin call error: ', err);
     }
   };
 
   // will be invoked by Codox callback
   let onBlacklistedInsert = () => {
     /**
-     * Invoke swift to notify user and do any custom actions, e.g. show modal/tooltip
+     * Invoke kotlin to notify user and do any custom actions, e.g. show modal/tooltip
      */
     try {
-      window.webkit.messageHandlers.usersUpdate.onBlacklistedInsert.postMessage();
+      AndroidApp.onBlacklistedInsert();
     } catch (err) {
-      console.error('[CODOX][onBlacklistedInsert] swift call error: ', err);
+      console.error('[CODOX][onBlacklistedInsert] kotlin call error: ', err);
     }
   };
 
@@ -198,9 +199,9 @@ export default function App() {
   const onCodoxError = function (data) {
     try {
       const json = JSON.stringify(data);
-      window.webkit.messageHandlers.onCodoxError.postMessage(json);
+      AndroidApp.onCodoxError(json);
     } catch (err) {
-      console.error('[CODOX][onCodoxError] swift call error: ', err);
+      console.error('[CODOX][onCodoxError] kotlin call error: ', err);
     }
   };
 
@@ -275,7 +276,7 @@ export default function App() {
          * client's error handler
          * When lexical throws, errors will be catched and exposed here
          *
-         * Can call swift here to notify swift code
+         * Can call kotlin here to notify kotlin code
          */
         console.error('[Lexical Demo][Editor Error Captured]: ', error);
       },
