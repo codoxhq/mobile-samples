@@ -65,6 +65,9 @@ import Placeholder from './ui/Placeholder';
 
 import { CodoxCollabPlugin, registerNodesWithCodox, CodoxCommentPlugin, validateStateStructure } from '../codoxCollab';
 
+// save android interface to local var
+let AndroidApp = window.AndroidApp;
+
 /**
  * Wrap registered nodes classes by codox, before passing into editor
  */
@@ -218,6 +221,7 @@ export default function App() {
       docId: '[unique document id]', //this is the unique id used to distinguish different documents
       username: '[unique username]', //unique user name
       apiKey: '[your codox apiKey]', // apiKey provided by codox
+      demo: true,
       hooks: {
         fetchDocOnNetworkReconnect,
         contentChanged,
