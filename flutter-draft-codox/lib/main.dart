@@ -31,34 +31,27 @@ class MyWebViewPage extends StatefulWidget {
 class _MyWebViewPageState extends State<MyWebViewPage> {
   late InAppWebViewController _webViewController;
 
-  // Initial lexical editor state - fetch it from backend
-  Map<String, dynamic> initLexicalStateRaw = {
-    "root": {
-      "children": [
-        {
-          "children": [],
-          "direction": 'ltr',
-          "format": '',
-          "indent": 0,
-          "type": 'paragraph',
-          "version": 1,
-          "textFormat": 0,
-        },
-      ],
-      "direction": 'ltr',
-      "format": '',
-      "indent": 0,
-      "type": 'root',
-      "version": 1,
-    },
-    "commentThreads": [],
+  // Initial draft editor state - fetch it from backend
+  Map<String, dynamic> initDraftStateRaw = {
+    "blocks": [
+      {
+        "key": "cn93p",
+        "text": "DEMO DOC TEXT",
+        "type": "unstyled",
+        "depth": 0,
+        "inlineStyleRanges": [],
+        "entityRanges": [],
+        "data": {},
+      }
+    ],
+    "entityMap": {}
   };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter+Lexical+Codox'),
+        title: const Text('Flutter+Draft+Codox'),
       ),
       body: FutureBuilder<String>(
         future: _loadLocalHtml(),
@@ -125,25 +118,18 @@ class _MyWebViewPageState extends State<MyWebViewPage> {
                         // response must match schema:  {content, timestamp}
                         Map<String, dynamic> fetchedData = {
                           "content": {
-                            "root": {
-                              "children": [
-                                {
-                                  "children": [],
-                                  "direction": 'ltr',
-                                  "format": '',
-                                  "indent": 0,
-                                  "type": 'paragraph',
-                                  "version": 1,
-                                  "textFormat": 0,
-                                },
-                              ],
-                              "direction": 'ltr',
-                              "format": '',
-                              "indent": 0,
-                              "type": 'root',
-                              "version": 1,
-                            },
-                            "commentThreads": [],
+                            "blocks": [
+                              {
+                                "key": "cn93p",
+                                "text": "DEMO DOC TEXT",
+                                "type": "unstyled",
+                                "depth": 0,
+                                "inlineStyleRanges": [],
+                                "entityRanges": [],
+                                "data": {},
+                              }
+                            ],
+                            "entityMap": {}
                           },
                           "timestamp": -1
                         };
@@ -156,25 +142,18 @@ class _MyWebViewPageState extends State<MyWebViewPage> {
                         String data = args[0];
                         print("[codoxErrorEventListener]: $data");
                       });
-
-                  _webViewController.addJavaScriptHandler(
-                      handlerName: "onBlacklistedInsertHandler",
-                      callback: (args) {
-                        print(
-                            "[onBlacklistedInsertHandler] blacklisted content detected");
-                      });
                 },
                 onConsoleMessage: (controller, consoleMessage) {
                   /**
                    * Log all js logs into debug terminal
                    */
-                  print('[LEXICAL_BUILD]: ${consoleMessage.message}');
+                  print('[DRAFT_BUILD]: ${consoleMessage.message}');
                 },
                 onLoadStop: (controller, url) async {
                   /**
                    * When page is fully loaded:
                    *  - inject js/css scripts
-                   *  - init lexcial editor with codox 
+                   *  - init draft editor with codox 
                    */
                   injectJsCss(controller);
 
@@ -183,10 +162,9 @@ class _MyWebViewPageState extends State<MyWebViewPage> {
                       seconds: 2)); // Delay to ensure React components load
 
                   // init editor with codox with initial state
-                  String initLexicalStateJSON = jsonEncode(initLexicalStateRaw);
+                  String initDraftStateJSON = jsonEncode(initDraftStateRaw);
                   await _webViewController.evaluateJavascript(
-                      source:
-                          "window.initLexicalEditor($initLexicalStateJSON);");
+                      source: "window.initDraftEditor($initDraftStateJSON);");
                 },
               );
             } else {
@@ -203,7 +181,7 @@ class _MyWebViewPageState extends State<MyWebViewPage> {
     try {
       // Load the local HTML file content
       final String htmlString =
-          await rootBundle.loadString("assets/lexical/index.html");
+          await rootBundle.loadString("assets/draft/index.html");
       if (htmlString.isEmpty) {
         throw Exception('HTML content is empty');
       }
@@ -220,14 +198,14 @@ class _MyWebViewPageState extends State<MyWebViewPage> {
     await controller.evaluateJavascript(source: """
       var link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = 'file:///android_asset/flutter_assets/assets/lexical/static/css/main.css'; // path to CSS
+      link.href = 'file:///android_asset/flutter_assets/assets/draft/static/css/main.css'; // path to CSS
       document.head.appendChild(link);
     """);
 
     // Inject the JS file
     await controller.evaluateJavascript(source: """
       var script = document.createElement('script');
-      script.src = 'file:///android_asset/flutter_assets/assets/lexical/static/js/main.js'; // path to JS
+      script.src = 'file:///android_asset/flutter_assets/assets/draft/static/js/main.js'; // path to JS
       document.body.appendChild(script);
     """);
   }
