@@ -109,7 +109,7 @@ export default function App() {
 
         setInitLexicalState(initState);
       } catch (err) {
-        console.error('[setInitLexicalState] error: ', err);
+        console.error('[initLexicalEditor] error: ', err);
       }
     };
 
