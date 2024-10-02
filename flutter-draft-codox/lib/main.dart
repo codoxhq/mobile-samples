@@ -65,11 +65,10 @@ class _MyWebViewPageState extends State<MyWebViewPage> {
                    * IMPORTANT:
                    *  Setting baseUrl is essential now for codox sync to work:
                    *  base url is considered by codox as "domain" which is allowed by codox subscription.
-                   *  Example: codox subscription has whitelisted domain "flutter_demo.app", configured in codox dashboard,
-                   *           then here need to specify baseUrl with http prefix, e.g. "http://flutter_demo.app"
+                   *  Example: here need to specify baseUrl with http prefix, e.g. "http://flutter_demo.app"
                    *
                    */
-                  baseUrl: Uri.parse("http://flutter_demo.app"),
+                  baseUrl: Uri.parse("http://[domain name]"),
                   mimeType: 'text/html',
                   encoding: 'utf-8',
                 ),
