@@ -175,6 +175,10 @@ class _MyWebViewPageState extends State<MyWebViewPage> {
                    * When page is fully loaded:
                    *  - inject js/css scripts
                    *  - init lexcial editor with codox 
+                   * 
+                   * Reason for separate injection of js/css is that when flutter loads local html with custom baseURL,
+                   * the js/css are not loaded by default.
+                   * 
                    */
                   injectJsCss(controller);
 

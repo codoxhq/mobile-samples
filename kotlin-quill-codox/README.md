@@ -22,7 +22,7 @@ QuillJS+Codox integration is implemented with kotlin WebView:
 2. Kotlin injects codox lib script into local html page, when it is loaded
 3. Kotlin app invokes js function to setup initial editor state - in this demo, it is mocked. in real app must be fetched from backend
 4. Kotlin app adds listeners (callbacks) for codox hooks and error events. this is done via kotlin WebInterface
-5. Kotlin app triggers js function which starts codox with config. **Codox Config is implemented inside app/main/assets/quill.html**. Config params like apiKey, docId and username can be passed from swift, now it is already in html file.
+5. Kotlin app triggers js function which starts codox with config. **Codox Config is implemented inside app/main/assets/quill.html**. Config params like apiKey, docId and username can be passed from kotlin, now it is already in html file.
 6. When codox hook is triggered in javascript, the kotlin corresponding callback is invoked and data is passed to kotlin app.
 
 ## Installation:
@@ -56,4 +56,4 @@ QuillJS+Codox integration is implemented with kotlin WebView:
 
 ## Configuration note:
 
-To enable Codox sync, the local html, loaded by swift, must have custom baseURL, which is equivalent to Codox "domain" in subscription.
+To enable Codox sync, the local html, loaded by kotlin, must have custom baseURL, which is equivalent to Codox "domain" in subscription.

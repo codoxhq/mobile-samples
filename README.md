@@ -14,15 +14,11 @@ An API key is required to run these demo. Get one [here](https://app.codox.io)
 
 ### Lexical
 
-- Swift
-- Flutter
-- Kotlin
+- [Flutter](https://github.com/codoxhq/mobile-samples/tree/master/flutter-lexical-codox)
 
 ### Draft
 
-- Swift
-- Flutter
-- Kotlin
+- [Flutter](https://github.com/codoxhq/mobile-samples/tree/master/flutter-draft-codox)
 
 ## Starters
 
@@ -30,10 +26,8 @@ Starter projects with editor, codox API and web framework for using with mobile 
 
 ### Lexical+ReactJS+Codox
 
-- Flutter // TODO link
-- Swift // TODO: link
-- Kotlin // TODO: link
+- [Flutter](https://github.com/codoxhq/mobile-samples/tree/master/starters/flutter-reactjs-lexical-codox)
 
 ### Draft+ReactJS+Codox
 
-- Flutter // TODO: do we pick flutter?
+- [Flutter](https://github.com/codoxhq/mobile-samples/tree/master/starters/flutter-reactjs-draft-codox)

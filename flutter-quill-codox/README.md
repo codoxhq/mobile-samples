@@ -51,4 +51,4 @@ Check debug console, should output all logs, including js logs
 
 ## Configuration note:
 
-To enable Codox sync, the local html, loaded by swift, must have custom baseURL, which is equivalent to Codox "domain" in subscription.
+To enable Codox sync, the local html, loaded by flutter, must have custom baseURL, which is equivalent to Codox "domain" in subscription.
