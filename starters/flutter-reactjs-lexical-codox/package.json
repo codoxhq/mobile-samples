@@ -5,7 +5,7 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@babel/runtime": "^7.24.7",
-    "@codoxhq/lexical-provider": "^1.0.1",
+    "@codoxhq/lexical-provider": "latest",
     "@excalidraw/excalidraw": "^0.17.6",
     "@lexical/file": "^0.16.1",
     "@lexical/react": "^0.16.1",
